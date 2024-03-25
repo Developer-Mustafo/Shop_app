@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Shop app</string>
+    <string name="save">Saqlash</string>
+    <string name="count">Soni</string>
+    <string name="name">Nomi</string>
+    <string name="exit">Chiqish</string>
+    <string name="youWantToExit">Chiqshni xoxlaysizmi ?</string>
+    <string name="delete">O\'chirish</string>
+    <string name="youWantToDelete">Buni o\'chirishni xoxlaysizmi ?</string>
+    <string name="yes">Ha</string>
+    <string name="search">Qidirish...</string>
+</resources>
