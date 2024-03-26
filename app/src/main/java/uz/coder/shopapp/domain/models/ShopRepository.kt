@@ -1,4 +1,4 @@
-package uz.coder.shopapp.models
+package uz.coder.shopapp.domain.models
 
 import kotlinx.coroutines.flow.Flow
 

@@ -1,4 +1,4 @@
-package uz.coder.shopapp.screens
+package uz.coder.shopapp.presentation.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -18,12 +18,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.launch
-import uz.coder.shopapp.models.ShopItem
-import uz.coder.shopapp.models.ShopItem.Companion.UNDEFINE_ID
-import uz.coder.shopapp.navigation.ID
+import uz.coder.shopapp.domain.models.ShopItem
+import uz.coder.shopapp.domain.models.ShopItem.Companion.UNDEFINE_ID
+import uz.coder.shopapp.presentation.navigation.ID
 import uz.coder.shopapp.ui.theme.Main_Color
 import uz.coder.shopapp.ui.theme.White
-import uz.coder.shopapp.viewModel.ShopViewModel
+import uz.coder.shopapp.presentation.viewModel.ShopViewModel
 
 @Composable
 fun ShopItemScreen(navHostController: NavHostController, navBackStackEntry: NavBackStackEntry) {
@@ -36,7 +36,8 @@ fun ShopItemScreen(navHostController: NavHostController, navBackStackEntry: NavB
     ShopItem(navHostController){
         scope.launch {
             if (id!= UNDEFINE_ID){
-                viewModel.getById(id).collect{
+                viewModel.getById(id)
+                viewModel.item.collect{
                     getItem = it
                 }
             }
@@ -46,7 +47,7 @@ fun ShopItemScreen(navHostController: NavHostController, navBackStackEntry: NavB
 }
 
 @Composable
-fun ShopItem(navHostController: NavHostController, item:()->ShopItem) {
+fun ShopItem(navHostController: NavHostController, item:()-> ShopItem) {
     val state = rememberScrollState()
     val shopItem = item()
     Column(modifier = Modifier

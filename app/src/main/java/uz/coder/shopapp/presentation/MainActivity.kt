@@ -1,4 +1,4 @@
-package uz.coder.shopapp
+package uz.coder.shopapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,11 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import uz.coder.shopapp.navigation.ShopNavigation
+import uz.coder.shopapp.presentation.navigation.ShopNavigation
 import uz.coder.shopapp.ui.theme.ShopAppTheme
 
 class MainActivity : ComponentActivity() {

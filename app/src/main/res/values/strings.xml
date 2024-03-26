@@ -8,5 +8,7 @@
     <string name="delete">O\'chirish</string>
     <string name="youWantToDelete">Buni o\'chirishni xoxlaysizmi ?</string>
     <string name="yes">Ha</string>
-    <string name="search">Qidirish...</string>
+    <string name="search">Qidirish…</string>
+    <string name="errorName">Nomini yozishda xatolik bor</string>
+    <string name="errorCount">Miqdorni yozishda xatolik bor</string>
 </resources>

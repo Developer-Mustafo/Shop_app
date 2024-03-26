@@ -1,4 +1,4 @@
-package uz.coder.shopapp.screens
+package uz.coder.shopapp.presentation.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -45,16 +45,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.launch
 import uz.coder.shopapp.R
-import uz.coder.shopapp.models.ShopItem
-import uz.coder.shopapp.models.ShopItem.Companion.UNDEFINE_ID
-import uz.coder.shopapp.navigation.ADD
-import uz.coder.shopapp.navigation.EDIT
-import uz.coder.shopapp.sealed.Screens
+import uz.coder.shopapp.domain.models.ShopItem
+import uz.coder.shopapp.domain.models.ShopItem.Companion.UNDEFINE_ID
+import uz.coder.shopapp.presentation.navigation.ADD
+import uz.coder.shopapp.presentation.navigation.EDIT
+import uz.coder.shopapp.domain.sealed.Screens
 import uz.coder.shopapp.ui.theme.Black
 import uz.coder.shopapp.ui.theme.Main_Color
 import uz.coder.shopapp.ui.theme.ShopAppTheme
 import uz.coder.shopapp.ui.theme.White
-import uz.coder.shopapp.viewModel.ShopViewModel
+import uz.coder.shopapp.presentation.viewModel.ShopViewModel
 
 @Composable
 fun HomeScreen(navHostController: NavHostController) {

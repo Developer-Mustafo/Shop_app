@@ -1,10 +1,10 @@
-package uz.coder.shopapp.sealed
+package uz.coder.shopapp.domain.sealed
 
 sealed class Screens(val route:String) {
-    data object Home:Screens(HOME)
-    data object ShopSearch:Screens(SHOP_SEARCH)
-    data object ShopItem:Screens(SHOP_ITEM)
-    data object Shop:Screens(SHOP)
+    data object Home: Screens(HOME)
+    data object ShopSearch: Screens(SHOP_SEARCH)
+    data object ShopItem: Screens(SHOP_ITEM)
+    data object Shop: Screens(SHOP)
     companion object{
         private const val HOME = "home"
         private const val SHOP_SEARCH = "shop_search"

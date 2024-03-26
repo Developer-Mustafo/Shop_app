@@ -1,4 +1,4 @@
-package uz.coder.shopapp.screens
+package uz.coder.shopapp.presentation.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,9 +25,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.launch
 import uz.coder.shopapp.R
-import uz.coder.shopapp.models.ShopItem
+import uz.coder.shopapp.domain.models.ShopItem
 import uz.coder.shopapp.ui.theme.ShopAppTheme
-import uz.coder.shopapp.viewModel.ShopViewModel
+import uz.coder.shopapp.presentation.viewModel.ShopViewModel
 
 @Composable
 fun ShopSearchScreen(navHostController: NavHostController) {
@@ -70,7 +70,7 @@ fun ShopSearch(navHostController: NavHostController, viewModel: ShopViewModel) {
 }
 
 @Composable
-fun RecyclerView(navHostController: NavHostController, viewModel: ShopViewModel,function: () -> List<ShopItem>) {
+fun RecyclerView(navHostController: NavHostController, viewModel: ShopViewModel, function: () -> List<ShopItem>) {
     LazyColumn(Modifier.fillMaxSize()) {
         itemsIndexed(function()){_,item->
             Items(item = item, navHostController = navHostController, viewModel = viewModel)
