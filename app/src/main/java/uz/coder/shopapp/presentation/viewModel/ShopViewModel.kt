@@ -1,7 +1,6 @@
 package uz.coder.shopapp.presentation.viewModel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -44,7 +43,6 @@ class ShopViewModel(private val application: Application):AndroidViewModel(appli
         val validateInput = validateInput(name,count)
         if (validateInput){
             viewModelScope.launch {
-                Log.d(TAG, "insert: $validateInput")
                 addShopItemUseCase(ShopItem(name = name, count = count))
             }
             finishWork(Unit)
@@ -125,4 +123,3 @@ class ShopViewModel(private val application: Application):AndroidViewModel(appli
     }
 }
 
-private const val TAG = "ShopViewModel"

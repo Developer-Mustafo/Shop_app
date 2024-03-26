@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
-import uz.coder.shopapp.domain.models.ShopItem
+
 @Dao
 interface ShopDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

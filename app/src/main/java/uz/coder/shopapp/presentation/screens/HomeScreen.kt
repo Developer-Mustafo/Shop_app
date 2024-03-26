@@ -3,6 +3,7 @@ package uz.coder.shopapp.presentation.screens
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,7 +22,6 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
@@ -40,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -47,14 +48,14 @@ import kotlinx.coroutines.launch
 import uz.coder.shopapp.R
 import uz.coder.shopapp.domain.models.ShopItem
 import uz.coder.shopapp.domain.models.ShopItem.Companion.UNDEFINE_ID
+import uz.coder.shopapp.domain.sealed.Screens
 import uz.coder.shopapp.presentation.navigation.ADD
 import uz.coder.shopapp.presentation.navigation.EDIT
-import uz.coder.shopapp.domain.sealed.Screens
+import uz.coder.shopapp.presentation.viewModel.ShopViewModel
 import uz.coder.shopapp.ui.theme.Black
 import uz.coder.shopapp.ui.theme.Main_Color
 import uz.coder.shopapp.ui.theme.ShopAppTheme
 import uz.coder.shopapp.ui.theme.White
-import uz.coder.shopapp.presentation.viewModel.ShopViewModel
 
 @Composable
 fun HomeScreen(navHostController: NavHostController) {
@@ -68,7 +69,7 @@ fun HomeScreen(navHostController: NavHostController) {
         Scaffold(floatingActionButton = {
             FabButton(navHostController)
         }) {
-        Home(navHostController,Modifier.padding(it), viewModel = viewModel) {
+        Home(it, navHostController, viewModel = viewModel) {
             scope.launch {
                 viewModel.list.collect {l->
                     list = l
@@ -88,17 +89,22 @@ fun FabButton(navHostController: NavHostController) {
 }
 
 @Composable
-fun Home(navHostController: NavHostController, modifier: Modifier, viewModel: ShopViewModel, list: () -> List<ShopItem>) {
+fun Home(
+    paddingValues: PaddingValues,
+    navHostController: NavHostController,
+    viewModel: ShopViewModel,
+    list: () -> List<ShopItem>
+) {
     ShopAppTheme {
         Surface {
-            Column(modifier = Modifier.fillMaxSize().padding(5.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(modifier = Modifier.fillMaxSize().padding(paddingValues), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                 OutlinedTextField(value = "", onValueChange = {  }, leadingIcon = { Icon(
                     imageVector = Icons.Default.Search,
                     contentDescription = null
 
                 ) }, enabled = false, modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { navHostController.navigate(Screens.ShopSearch.route) }, label = { Text(
+                    .clickable { navHostController.navigate(Screens.ShopSearch.route) }, label = { Text(fontFamily = FontFamily.Monospace,
                     text = stringResource(id = R.string.search)
                 ) })
                 LazyColumn(modifier = Modifier
@@ -112,7 +118,6 @@ fun Home(navHostController: NavHostController, modifier: Modifier, viewModel: Sh
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Items(item: ShopItem, navHostController: NavHostController, viewModel: ShopViewModel) {
     val name = stringResource(id = R.string.name).lowerText().plus(": ${item.name}")
@@ -128,12 +133,12 @@ fun Items(item: ShopItem, navHostController: NavHostController, viewModel: ShopV
                         .fillMaxWidth()
                         .weight(6f)) {
                         Spacer(modifier = Modifier.height(5.dp))
-                        Text(text = name, modifier = Modifier
+                        Text(text = name, fontFamily = FontFamily.Monospace, modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.Start)
                             .padding(start = 15.dp, end = 15.dp), color = White)
                         Spacer(modifier = Modifier.height(5.dp))
-                        Text(text = count, modifier = Modifier
+                        Text(text = count, fontFamily = FontFamily.Monospace, modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.Start)
                             .padding(start = 15.dp, end = 15.dp), color = White)
@@ -156,10 +161,10 @@ fun Items(item: ShopItem, navHostController: NavHostController, viewModel: ShopV
             if (showDialog) {
                 AlertDialog(onDismissRequest = { showDialog = false }, confirmButton = { Button(
                     onClick = {viewModel.delete(item.id); showDialog = false}) {
-                    Text(text = stringResource(id = R.string.yes))
-                } }, title = { Text(
+                    Text(fontFamily = FontFamily.Monospace, text = stringResource(id = R.string.yes))
+                } }, title = { Text(fontFamily = FontFamily.Monospace,
                     text = stringResource(id = R.string.delete)
-                ) }, text = { Text(text = stringResource(id = R.string.youWantToDelete)) })
+                ) }, text = { Text(fontFamily = FontFamily.Monospace, text = stringResource(id = R.string.youWantToDelete)) })
             }
         }
     }
@@ -169,4 +174,3 @@ fun String.lowerText():String{
     val substring = this.subSequence(1, this.length)
     return first.plus(substring)
 }
-private const val TAG = "HomeScreen"

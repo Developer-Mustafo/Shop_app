@@ -25,7 +25,7 @@ fun ShopNavigation(modifier: Modifier) {
             Screens.ShopItem.route+"/{$ID}", arguments = listOf(
             navArgument(ID){ type = NavType.IntType }
         )){
-            ShopItemScreen(navHostController = navController, it)
+            ShopItemScreen(it)
         }
         composable(Screens.ShopSearch.route){
             ShopSearchScreen(navHostController = navController)

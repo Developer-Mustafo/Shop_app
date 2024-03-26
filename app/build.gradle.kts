@@ -53,9 +53,8 @@ android {
 dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation (libs.google.dagger)
-    kapt (libs.dagger.compiler)
     implementation(libs.androidx.room.ktx)
+    //noinspection KaptUsageInsteadOfKsp
     kapt(libs.room.compiler)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

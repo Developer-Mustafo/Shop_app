@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -21,6 +22,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
@@ -98,10 +101,12 @@ fun Shop(
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
                 OutlinedTextField(value = name, onValueChange = { name = it; viewModel.resetErrorInputName() }, modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 15.dp, end = 15.dp), label = { Text(text = stringResource(R.string.name)) })
+                    .padding(start = 15.dp, end = 15.dp), label = { Text(fontFamily = FontFamily.Monospace, text = stringResource(R.string.name)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
+                )
                 OutlinedTextField(value = count, onValueChange = { count = it; viewModel.resetErrorInputCount() }, modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 15.dp, end = 15.dp), label = { Text(text = stringResource(R.string.count)) })
+                    .padding(start = 15.dp, end = 15.dp), label = { Text(fontFamily = FontFamily.Monospace, text = stringResource(R.string.count)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
                 OutlinedButton(onClick = {
                     when(state){
                         ADD ->{
@@ -115,14 +120,16 @@ fun Shop(
                             }
                         }
                     }
-                    Toast.makeText(context, errorName.value, Toast.LENGTH_SHORT).show()
-                    Toast.makeText(context, errorCount.value, Toast.LENGTH_SHORT).show()
+                    if (errorName.value !="" && errorCount.value!=""){
+                        Toast.makeText(context, errorName.value, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, errorCount.value, Toast.LENGTH_SHORT).show()
+                    }
                 }, modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 15.dp, end = 15.dp), colors = ButtonDefaults.buttonColors(
                     Main_Color)) {
                     Box(contentAlignment = Alignment.Center) {
-                        Text(text = stringResource(id = R.string.save))
+                        Text(fontFamily = FontFamily.Monospace, text = stringResource(id = R.string.save))
                     }
                 }
             }
@@ -155,4 +162,3 @@ fun observer(viewModel: ShopViewModel, scope: CoroutineScope, navHostController:
     }
 }
 
-private const val TAG = "ShopScreen"
